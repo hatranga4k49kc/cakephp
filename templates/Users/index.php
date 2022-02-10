@@ -3,64 +3,101 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\User[]|\Cake\Collection\CollectionInterface $users
  */
+$this->layout = 'adminmaster';
+
+// $this->assign('content','hello');
+// $this->start('content');
 ?>
-<div class="users index content">
-    <?= $this->Html->link(__('New User'), ['action' => 'add'], ['class' => 'button float-right']) ?>
-    <h3><?= __('Users') ?></h3>
+
+<div class="content">
+        <!-- Your awesome content goes here -->
+
+    <div class="row">
+    <div class="col-md-12">
+    <div class="widget">
+    <div class="widget-header transparent">
+    <h2><strong>Toolbar</strong> CRUD Table</h2>
+    <div class="additional-btn">
+    <a href="#" class="hidden reload"><i class="icon-ccw-1"></i></a>
+    <a href="#" class="widget-toggle"><i class="icon-down-open-2"></i></a>
+    <a href="#" class="widget-close"><i class="icon-cancel-3"></i></a>
+    </div>
+    </div>
+    <div class="widget-content">
+    <div class="data-table-toolbar">
+    <div class="row">
+    <div class="col-md-4">
+        <form role="form">
+        <input type="text" class="form-control" placeholder="Search...">
+        </form>
+        
+    </div>
+    <div class="col-md-8">
+        <div class="toolbar-btn-action">
+            <a class="btn btn-success" href="{{ route('get_create') }}" ><i class="fa fa-plus-circle"></i> Add new</a>
+            
+        </div>
+    </div>
+    </div>
+    </div>
+
     <div class="table-responsive">
-        <table>
-            <thead>
-                <tr>
-                    <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('name') ?></th>
-                    <th><?= $this->Paginator->sort('email') ?></th>
-                    <th><?= $this->Paginator->sort('is_admin') ?></th>
-                    <th><?= $this->Paginator->sort('active') ?></th>
-                    <th><?= $this->Paginator->sort('remember_token') ?></th>
-                    <th><?= $this->Paginator->sort('created_at') ?></th>
-                    <th><?= $this->Paginator->sort('updated_at') ?></th>
-                    <th><?= $this->Paginator->sort('province_id') ?></th>
-                    <th><?= $this->Paginator->sort('district_id') ?></th>
-                    <th><?= $this->Paginator->sort('commune_id') ?></th>
-                    <th><?= $this->Paginator->sort('phone') ?></th>
-                    <th><?= $this->Paginator->sort('token_forgot_password') ?></th>
-                    <th class="actions"><?= __('Actions') ?></th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($users as $user): ?>
-                <tr>
-                    <td><?= h($user->id) ?></td>
-                    <td><?= h($user->name) ?></td>
-                    <td><?= h($user->email) ?></td>
-                    <td><?= $this->Number->format($user->is_admin) ?></td>
-                    <td><?= $this->Number->format($user->active) ?></td>
-                    <td><?= h($user->remember_token) ?></td>
-                    <td><?= h($user->created_at) ?></td>
-                    <td><?= h($user->updated_at) ?></td>
-                    <td><?= h($user->province_id) ?></td>
-                    <td><?= h($user->district_id) ?></td>
-                    <td><?= h($user->commune_id) ?></td>
-                    <td><?= h($user->phone) ?></td>
-                    <td><?= h($user->token_forgot_password) ?></td>
-                    <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $user->id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $user->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete # {0}?', $user->id)]) ?>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+    <table data-sortable class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th data-sortable="false">Option</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        
+        <tr>
+            <?php foreach ($users as $key=>$user): ?>
+                <td><?= (++$key) ?></td>
+                <td><strong><?= ($user->name) ?></strong></td>
+                <td><a href="mailto:#"></a> <?= ($user->email) ?> </td>
+                <?php if($user->is_admin == 1): ?>
+                <td>Admin</td> 
+                <?php elseif($user->is_admin == 0): ?>
+                    <td>User</td>   
+                <?php endif; ?>
+
+                <td><span class="label label-success">Active</span></td>
+                <td>
+                    <div class="btn-group btn-group-xs">
+                            <a data-toggle="tooltip" title="Lock User" class="btn btn-default" href="{{route('lock_user', [$result->id, 1])}}"><i class="fa fa-power-off"></i></a>  
+                        <a data-toggle="tooltip" title="Edit" class="btn btn-default" href="{{route('get_edit', $result->id)}}"><i class="fa fa-edit"></i></a>
+                        <a data-toggle="tooltip" title="Delete" class="btn btn-default" href="{{route('delete_user', $result->id)}}"><i class="fa fa-trash-o"></i></a>
+                    </div>
+                </td>
+                <?php endforeach ?>
+        </tr>
+        
+    
+        
+        
+    </tbody>
+    </table>
     </div>
-    <div class="paginator">
+
+    <nav aria-label="Page navigation example">
         <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+            <?= $this->Paginator->prev('Previous') ?>
             <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
+            <?= $this->Paginator->next('Next') ?>
         </ul>
-        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
+    </nav>
     </div>
-</div>
+    </div>
+    </div>
+
+    </div>
+
+
+    </div>
+
+

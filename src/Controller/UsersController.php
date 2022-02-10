@@ -18,10 +18,7 @@ class UsersController extends AppController
     public function index()
     {
         $users = $this->paginate($this->Users);
-
-        echo json_encode($users);
-        exit();
-        // $this->set(compact('users'));
+        $this->set(compact('users'));
     }
 
     /**
