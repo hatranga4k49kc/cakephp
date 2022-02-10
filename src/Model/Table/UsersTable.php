@@ -40,20 +40,11 @@ class UsersTable extends Table
     public function initialize(array $config): void
     {
         parent::initialize($config);
-
+        
         $this->setTable('users');
-        $this->setDisplayField('name');
         $this->setPrimaryKey('id');
-
-        $this->belongsTo('Provinces', [
-            'foreignKey' => 'province_id',
-        ]);
-        $this->belongsTo('Districts', [
-            'foreignKey' => 'district_id',
-        ]);
-        $this->belongsTo('Communes', [
-            'foreignKey' => 'commune_id',
-        ]);
+        $this->addBehavior('Timestamp');
+        
     }
 
     /**
@@ -128,9 +119,6 @@ class UsersTable extends Table
     public function buildRules(RulesChecker $rules): RulesChecker
     {
         $rules->add($rules->isUnique(['email']), ['errorField' => 'email']);
-        $rules->add($rules->existsIn('province_id', 'Provinces'), ['errorField' => 'province_id']);
-        $rules->add($rules->existsIn('district_id', 'Districts'), ['errorField' => 'district_id']);
-        $rules->add($rules->existsIn('commune_id', 'Communes'), ['errorField' => 'commune_id']);
 
         return $rules;
     }

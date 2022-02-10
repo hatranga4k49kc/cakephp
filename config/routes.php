@@ -44,6 +44,8 @@ return static function (RouteBuilder $routes) {
      */
     $routes->setRouteClass(DashedRoute::class);
 
+
+
     $routes->scope('/', function (RouteBuilder $builder) {
         /*
          * Here, we are connecting '/' (base path) to a controller called 'Pages',
@@ -56,7 +58,7 @@ return static function (RouteBuilder $routes) {
          * ...and connect the rest of 'Pages' controller's URLs.
          */
         $builder->connect('/pages/*', 'Pages::display');
-        $builder->connect('admin/users', 'users::index');
+        
 
         /*
          * Connect catchall routes for all controllers.
@@ -71,7 +73,15 @@ return static function (RouteBuilder $routes) {
          * You can remove these routes once you've connected the
          * routes you want in your application.
          */
-        $builder->fallbacks();
+        // $builder->fallbacks();
+    });
+//route Admin
+    $routes->scope('/admin' , function (RouteBuilder $builder) {
+        $builder->connect('/users', 'users::index');
+        $builder->connect('/users/create', 'users::add');
+        // $builder->connect('/users/edit/:id', 'users::edit');
+        $builder->connect('/users/edit/:id', ['controller' => 'Users', 'action' => 'edit'],["pass" => ["id"]]);
+
     });
 
     /*

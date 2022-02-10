@@ -3,37 +3,57 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\User $user
  */
+$this->layout = 'adminmaster';
 ?>
-<div class="row">
-    <aside class="column">
-        <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('List Users'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-        </div>
-    </aside>
-    <div class="column-responsive column-80">
-        <div class="users form content">
-            <?= $this->Form->create($user) ?>
-            <fieldset>
-                <legend><?= __('Add User') ?></legend>
-                <?php
-                    echo $this->Form->control('name');
-                    echo $this->Form->control('email');
-                    echo $this->Form->control('password');
-                    echo $this->Form->control('is_admin');
-                    echo $this->Form->control('active');
-                    echo $this->Form->control('remember_token');
-                    echo $this->Form->control('created_at');
-                    echo $this->Form->control('updated_at');
-                    echo $this->Form->control('province_id');
-                    echo $this->Form->control('district_id');
-                    echo $this->Form->control('commune_id');
-                    echo $this->Form->control('phone');
-                    echo $this->Form->control('token_forgot_password');
-                ?>
-            </fieldset>
-            <?= $this->Form->button(__('Submit')) ?>
-            <?= $this->Form->end() ?>
+<?= $this->Form->create() ?>
+
+<div class="content">
+    <div class="row">
+        <div class="col-md-12 portlets">
+            <div class="widget">
+                <div class="widget-header transparent">
+                    <h2><strong>Contact</strong> Form</h2>
+                    <div class="additional-btn">
+                        <a href="#" class="hidden reload"><i class="icon-ccw-1"></i></a>
+                        <a href="#" class="widget-toggle"><i class="icon-down-open-2"></i></a>
+                        <a href="#" class="widget-close"><i class="icon-cancel-3"></i></a>
+                    </div>
+                </div>
+              
+                <div class="widget-content padding">
+                    <form role="form" id="contactForm"  method="POST" enctype="multipart/form-data">
+                    
+                      <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" class="form-control" name="name" >
+                     
+                        <p></p>
+                        
+                      </div>
+                      <div class="form-group">
+                        <label>Email address</label>
+                        <input type="text" class="form-control" name="email">
+                      </div>
+                      <div class="form-group">
+                        <label>password</label>
+                        <input type="text" class="form-control" name="password">
+                      </div>
+                      <div class="form-group">
+                        <label>Role</label>
+                            <select class="form-control" name="is_admin">
+                                <option value="1">Admin</option>
+                                <option value="0">User</option>
+                            </select>
+                      </div>
+                     
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+            
         </div>
     </div>
+    
+                    
 </div>
+<?= $this->Form->end() ?>

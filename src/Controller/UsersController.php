@@ -3,6 +3,10 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Cake\Utility\Text;
+use Cake\Utility\Security;
+use App\Model\Table\UsersTable;
+use App\Model\Entity\User;
 /**
  * Users Controller
  *
@@ -15,9 +19,17 @@ class UsersController extends AppController
      *
      * @return \Cake\Http\Response|null|void Renders view
      */
+    // public function initialize(): void
+    // {
+    //     parent::initialize();
+       
+    //     $this->loadModel("UsersTable");
+    // }
+    
+
     public function index()
     {
-        $users = $this->paginate($this->Users);
+        $users = $this->paginate($this->Users,['limit'=>5]);
         $this->set(compact('users'));
     }
 
@@ -42,15 +54,28 @@ class UsersController extends AppController
      *
      * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
      */
+
     public function add()
     {
+        
+        // $this->render('add');
         $user = $this->Users->newEmptyEntity();
+        // dd($user);
         if ($this->request->is('post')) {
-            $user = $this->Users->patchEntity($user, $this->request->getData());
+            // dd($this->request->getData());
+            $user_arr = $this->request->getData();
+            // dd($user_arr);
+            $user_arr['id'] = Text::uuid();
+            $user_arr['password'] = Security::hash($user_arr['password']);
+            // dd($user_arr);
+            // dd($user);
+            $user = $this->Users->patchEntity($user,$user_arr);
+            // dd($user);
+            // dd($this->Users->save($user));
             if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
+                // dd(1);
+                // $this->Flash->success(__('The user has been saved.'));
+                return $this->redirect('/admin/users');
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
@@ -66,15 +91,19 @@ class UsersController extends AppController
      */
     public function edit($id = null)
     {
-        $user = $this->Users->get($id, [
-            'contain' => [],
-        ]);
+        // $id = $this->request->getParam($id);
+        // dd($id);
+        // $user = $this->Users->get($id, [
+        //     'contain' => [],
+        // ]);
+        // dd($user);
+        $user = $this->Users->findById($id)->firstOrFail();
+        // dd($user);
         if ($this->request->is(['patch', 'post', 'put'])) {
+            // dd($this->request->getData());
             $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect('/admin/users');
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }

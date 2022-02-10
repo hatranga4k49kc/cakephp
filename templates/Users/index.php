@@ -34,7 +34,7 @@ $this->layout = 'adminmaster';
     </div>
     <div class="col-md-8">
         <div class="toolbar-btn-action">
-            <a class="btn btn-success" href="{{ route('get_create') }}" ><i class="fa fa-plus-circle"></i> Add new</a>
+            <a class="btn btn-success" href="/admin/users/create" ><i class="fa fa-plus-circle"></i> Add new</a>
             
         </div>
     </div>
@@ -54,9 +54,9 @@ $this->layout = 'adminmaster';
     </thead>
 
     <tbody>
-        
+    <?php foreach ($users as $key=>$user): ?>
         <tr>
-            <?php foreach ($users as $key=>$user): ?>
+            
                 <td><?= (++$key) ?></td>
                 <td><strong><?= ($user->name) ?></strong></td>
                 <td><a href="mailto:#"></a> <?= ($user->email) ?> </td>
@@ -70,15 +70,15 @@ $this->layout = 'adminmaster';
                 <td>
                     <div class="btn-group btn-group-xs">
                             <a data-toggle="tooltip" title="Lock User" class="btn btn-default" href="{{route('lock_user', [$result->id, 1])}}"><i class="fa fa-power-off"></i></a>  
-                        <a data-toggle="tooltip" title="Edit" class="btn btn-default" href="{{route('get_edit', $result->id)}}"><i class="fa fa-edit"></i></a>
+                        <a data-toggle="tooltip" title="Edit" class="btn btn-default" href="/admin/users/edit/<?= ($user->id) ?>"><i class="fa fa-edit"></i></a>
                         <a data-toggle="tooltip" title="Delete" class="btn btn-default" href="{{route('delete_user', $result->id)}}"><i class="fa fa-trash-o"></i></a>
                     </div>
                 </td>
-                <?php endforeach ?>
+                
         </tr>
-        
+        <?php endforeach ?>
     
-        
+       
         
     </tbody>
     </table>
