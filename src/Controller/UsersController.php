@@ -79,7 +79,8 @@ class UsersController extends AppController
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
-        $this->set(compact('user'));
+        // $this->set(compact('user'));
+        $this->set('user', $user);
     }
 
     /**
@@ -91,12 +92,7 @@ class UsersController extends AppController
      */
     public function edit($id = null)
     {
-        // $id = $this->request->getParam($id);
-        // dd($id);
-        // $user = $this->Users->get($id, [
-        //     'contain' => [],
-        // ]);
-        // dd($user);
+        
         $user = $this->Users->findById($id)->firstOrFail();
         // dd($user);
         if ($this->request->is(['patch', 'post', 'put'])) {
@@ -119,7 +115,7 @@ class UsersController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+        $this->request->allowMethod(['post', 'delete','get']);
         $user = $this->Users->get($id);
         if ($this->Users->delete($user)) {
             $this->Flash->success(__('The user has been deleted.'));
@@ -127,6 +123,23 @@ class UsersController extends AppController
             $this->Flash->error(__('The user could not be deleted. Please, try again.'));
         }
 
-        return $this->redirect(['action' => 'index']);
+        return $this->redirect('/admin/users');
+    }
+
+    public function lock($id = null)
+    {
+        $this->request->allowMethod(['get']);
+        $user = $this->Users->get($id);
+        $active = 0;
+        if($user->active == 0){
+            $active = 1;
+        }
+        $user = $this->Users->patchEntity($user, ['active'=>$active]);
+        if($this->Users->save($user)){
+            return $this->redirect('/admin/users');
+        }else{
+            $this->Flash->error(__('The user could not be deleted. Please, try again.'));
+        }
+        return $this->redirect('/admin/users');
     }
 }

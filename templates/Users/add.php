@@ -5,14 +5,15 @@
  */
 $this->layout = 'adminmaster';
 ?>
-<?= $this->Form->create() ?>
+
 
 <div class="content">
+<?= $this->Form->create() ?>
     <div class="row">
         <div class="col-md-12 portlets">
             <div class="widget">
                 <div class="widget-header transparent">
-                    <h2><strong>Contact</strong> Form</h2>
+                    <h2><strong>Add User </strong> Form</h2>
                     <div class="additional-btn">
                         <a href="#" class="hidden reload"><i class="icon-ccw-1"></i></a>
                         <a href="#" class="widget-toggle"><i class="icon-down-open-2"></i></a>
@@ -53,7 +54,6 @@ $this->layout = 'adminmaster';
             
         </div>
     </div>
-    
+    <?= $this->Form->end() ?>  
                     
 </div>
-<?= $this->Form->end() ?>

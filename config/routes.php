@@ -22,6 +22,7 @@
  */
 
 use Cake\Routing\Route\DashedRoute;
+use Cake\Routing\Route\Route;
 use Cake\Routing\RouteBuilder;
 
 return static function (RouteBuilder $routes) {
@@ -81,6 +82,8 @@ return static function (RouteBuilder $routes) {
         $builder->connect('/users/create', 'users::add');
         // $builder->connect('/users/edit/:id', 'users::edit');
         $builder->connect('/users/edit/:id', ['controller' => 'Users', 'action' => 'edit'],["pass" => ["id"]]);
+        $builder->connect('/users/delete/:id', ['controller' => 'Users', 'action' => 'delete'],["pass" => ["id"]]);
+        $builder->connect('/users/lock/:id', ['controller' => 'Users', 'action' => 'lock'],["pass" => ["id"]]);
 
     });
 

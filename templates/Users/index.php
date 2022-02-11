@@ -69,10 +69,13 @@ $this->layout = 'adminmaster';
                 <td><span class="label label-success">Active</span></td>
                 <td>
                     <div class="btn-group btn-group-xs">
-                            <a data-toggle="tooltip" title="Lock User" class="btn btn-default" href="{{route('lock_user', [$result->id, 1])}}"><i class="fa fa-power-off"></i></a>  
+                        <a data-toggle="tooltip" title="Lock User" class="btn btn-default" href="{{route('lock_user', [$result->id, 1])}}"><i class="fa fa-power-off"></i></a>  
                         <a data-toggle="tooltip" title="Edit" class="btn btn-default" href="/admin/users/edit/<?= ($user->id) ?>"><i class="fa fa-edit"></i></a>
-                        <a data-toggle="tooltip" title="Delete" class="btn btn-default" href="{{route('delete_user', $result->id)}}"><i class="fa fa-trash-o"></i></a>
+                        <a data-toggle="tooltip" title="Delete" class="btn btn-default" href="/admin/users/delete/<?= ($user->id) ?>"><i class="fa fa-trash-o"></i></a>
+                        <a data-toggle="tooltip" title="Active User" class="btn btn-default" href="/admin/users/lock/<?= ($user->id) ?>"><i class="fa fa-power-off"></i></a>
+                        
                     </div>
+                   
                 </td>
                 
         </tr>
