@@ -231,7 +231,7 @@
                                     <li class="divider"></li>
                                     <li><a href="#"><i class="icon-help-2"></i> Help</a></li>
                                     <li><a href="lockscreen.html"><i class="icon-lock-1"></i> Lock me</a></li>
-                                    <li><a class="md-trigger" data-modal="logout-modal" href="{{ route('logout') }}"><i
+                                    <li><a class="md-trigger" data-modal="logout-modal" href="/admin//logout"><i
                                                 class="icon-logout-1"></i> Logout</a></li>
                                 </ul>
                             </li>

@@ -86,7 +86,14 @@ return static function (RouteBuilder $routes) {
         $builder->connect('/users/lock/:id', ['controller' => 'Users', 'action' => 'lock'],["pass" => ["id"]]);
         $builder->connect('/login', ['controller' => 'Users', 'action' => 'login']);
         $builder->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
+    });
 
+    $routes->scope('/admin/category' , function (RouteBuilder $builder) {
+        $builder->connect('/', 'categories::index');
+        $builder->connect('/create', 'categories::add');
+        $builder->connect('/edit/:id', ['controller' => 'Categories', 'action' => 'edit'],["pass" => ["id"]]);
+        $builder->connect('/delete/:id', ['controller' => 'Categories', 'action' => 'delete'],["pass" => ["id"]]);
+        
     });
 
     /*
