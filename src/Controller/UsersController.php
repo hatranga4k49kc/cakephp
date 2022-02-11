@@ -7,6 +7,7 @@ use Cake\Utility\Text;
 use Cake\Utility\Security;
 use App\Model\Table\UsersTable;
 use App\Model\Entity\User;
+use App\Controller\AppController;
 /**
  * Users Controller
  *
@@ -19,12 +20,13 @@ class UsersController extends AppController
      *
      * @return \Cake\Http\Response|null|void Renders view
      */
-    // public function initialize(): void
-    // {
-    //     parent::initialize();
+    public function initialize(): void
+    {
+        parent::initialize();
        
-    //     $this->loadModel("UsersTable");
-    // }
+        $this->Auth->allow(['logout']);
+    }
+    
     
 
     public function index()
@@ -66,7 +68,7 @@ class UsersController extends AppController
             $user_arr = $this->request->getData();
             // dd($user_arr);
             $user_arr['id'] = Text::uuid();
-            $user_arr['password'] = Security::hash($user_arr['password']);
+            // $user_arr['password'] = Security::hash($user_arr['password']);
             // dd($user_arr);
             // dd($user);
             $user = $this->Users->patchEntity($user,$user_arr);
@@ -142,4 +144,29 @@ class UsersController extends AppController
         }
         return $this->redirect('/admin/users');
     }
+
+    public function login()
+    {
+        if($this->request->is('post')){
+            $user = $this->Auth->identify();
+            // dd($user);
+            if($user){
+                $this->Auth->setUser($user);
+                if($user['is_admin'] == 0 ||$user['active'] == 1)
+                {
+                    $this->Flash->error("You have not access permission !");
+                    return $this->redirect(['controller' => 'Users', 'action' => 'logout']);
+                }
+                return $this->redirect(['controller'=>'Users','action'=>'index']);
+            }else {
+                $this->Flash->error("Incorrect username or password !");
+            }
+        }
+    }
+
+    public function logout(){
+        return $this->redirect($this->Auth->logout());
+    }
+
+    
 }

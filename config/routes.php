@@ -84,6 +84,8 @@ return static function (RouteBuilder $routes) {
         $builder->connect('/users/edit/:id', ['controller' => 'Users', 'action' => 'edit'],["pass" => ["id"]]);
         $builder->connect('/users/delete/:id', ['controller' => 'Users', 'action' => 'delete'],["pass" => ["id"]]);
         $builder->connect('/users/lock/:id', ['controller' => 'Users', 'action' => 'lock'],["pass" => ["id"]]);
+        $builder->connect('/login', ['controller' => 'Users', 'action' => 'login']);
+        $builder->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
 
     });
 
