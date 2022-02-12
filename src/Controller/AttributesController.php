@@ -19,40 +19,17 @@ class AttributesController extends AppController
     public function index()
     {
         $attributes = $this->paginate($this->Attributes);
-
         $this->set(compact('attributes'));
     }
 
-    /**
-     * View method
-     *
-     * @param string|null $id Attribute id.
-     * @return \Cake\Http\Response|null|void Renders view
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
-        $attribute = $this->Attributes->get($id, [
-            'contain' => [],
-        ]);
-
-        $this->set(compact('attribute'));
-    }
-
-    /**
-     * Add method
-     *
-     * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
-     */
+    
     public function add()
     {
         $attribute = $this->Attributes->newEmptyEntity();
         if ($this->request->is('post')) {
             $attribute = $this->Attributes->patchEntity($attribute, $this->request->getData());
             if ($this->Attributes->save($attribute)) {
-                $this->Flash->success(__('The attribute has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect('/admin/attribute');
             }
             $this->Flash->error(__('The attribute could not be saved. Please, try again.'));
         }
@@ -68,15 +45,11 @@ class AttributesController extends AppController
      */
     public function edit($id = null)
     {
-        $attribute = $this->Attributes->get($id, [
-            'contain' => [],
-        ]);
+        $attribute = $this->Attributes->findById($id)->firstOrFail();
         if ($this->request->is(['patch', 'post', 'put'])) {
             $attribute = $this->Attributes->patchEntity($attribute, $this->request->getData());
             if ($this->Attributes->save($attribute)) {
-                $this->Flash->success(__('The attribute has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect('/admin/attribute/edit/'.$id);
             }
             $this->Flash->error(__('The attribute could not be saved. Please, try again.'));
         }
@@ -92,14 +65,14 @@ class AttributesController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+        $this->request->allowMethod(['post', 'delete','get']);
         $attribute = $this->Attributes->get($id);
         if ($this->Attributes->delete($attribute)) {
-            $this->Flash->success(__('The attribute has been deleted.'));
+            return $this->redirect('/admin/attribute');
         } else {
             $this->Flash->error(__('The attribute could not be deleted. Please, try again.'));
         }
 
-        return $this->redirect(['action' => 'index']);
+        return $this->redirect('/admin/attribute');
     }
 }

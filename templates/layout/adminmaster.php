@@ -260,7 +260,7 @@
                         <li class='has_sub'><a href='javascript:void(0);'><i class="fa fa-check-square-o"></i>
                                 <span>User</span> <span class="pull-right"><i class="fa fa-angle-down"></i></span></a>
                             <ul>
-                                <li><a href='{{route("admin")}}'><span>List User</span></a></li>
+                                <li><a href='/admin/users'><span>List User</span></a></li>
                             </ul>
                         </li>
 
@@ -276,8 +276,8 @@
                         <li class='has_sub'><a href='javascript:void(0);'><i class="fa fa-check-square-o"></i> <span>Product</span> <span class="pull-right"><i class="fa fa-angle-down"></i></span></a>
                             <ul>
                               <li><a href='/admin/products'><span>List Product</span></a></li>
-                                <li><a href='{{route("get_all_attribute")}}'><span>List Attribute</span></a></li>
-                                <li><a href='{{route("get_all_category")}}'><span>List Category</span></a></li>
+                                <li><a href='/admin/attribute'><span>List Attribute</span></a></li>
+                                <li><a href='/admin/category'><span>List Category</span></a></li>
                                 <li><a href='/admin/orders'><span>List Order</span></a></li>
                             </ul>
                           </li>

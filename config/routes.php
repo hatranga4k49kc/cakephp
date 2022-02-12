@@ -96,6 +96,14 @@ return static function (RouteBuilder $routes) {
         
     });
 
+    $routes->scope('/admin/attribute' , function (RouteBuilder $builder) {
+        $builder->connect('/', 'attributes::index');
+        $builder->connect('/create', 'attributes::add');
+        $builder->connect('/edit/:id', ['controller' => 'Attributes', 'action' => 'edit'],["pass" => ["id"]]);
+        $builder->connect('/delete/:id', ['controller' => 'Attributes', 'action' => 'delete'],["pass" => ["id"]]);
+        
+    });
+
     /*
      * If you need a different set of middleware or none at all,
      * open new scope and define routes there.
