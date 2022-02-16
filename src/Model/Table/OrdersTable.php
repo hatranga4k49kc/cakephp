@@ -45,9 +45,7 @@ class OrdersTable extends Table
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
 
-        $this->belongsTo('Customers', [
-            'foreignKey' => 'customer_id',
-        ]);
+       
         $this->belongsTo('Users', [
             'foreignKey' => 'user_id',
         ]);
@@ -103,7 +101,6 @@ class OrdersTable extends Table
      */
     public function buildRules(RulesChecker $rules): RulesChecker
     {
-        $rules->add($rules->existsIn('customer_id', 'Customers'), ['errorField' => 'customer_id']);
         $rules->add($rules->existsIn('user_id', 'Users'), ['errorField' => 'user_id']);
 
         return $rules;
