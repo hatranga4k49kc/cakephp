@@ -99,8 +99,24 @@ return static function (RouteBuilder $routes) {
     $routes->scope('/admin/attribute' , function (RouteBuilder $builder) {
         $builder->connect('/', 'attributes::index');
         $builder->connect('/create', 'attributes::add');
-        $builder->connect('/edit/:id', ['controller' => 'Attributes', 'action' => 'edit'],["pass" => ["id"]]);
+        $builder->connect('/edit/{id}', ['controller' => 'Attributes', 'action' => 'edit'],["pass" => ["id"]]);
         $builder->connect('/delete/:id', ['controller' => 'Attributes', 'action' => 'delete'],["pass" => ["id"]]);
+        
+    });
+
+    $routes->scope('/admin/product' , function (RouteBuilder $builder) {
+        $builder->connect('/', 'products::index');
+        $builder->connect('/create', 'products::add');
+        $builder->connect('/edit/:id', ['controller' => 'Products', 'action' => 'edit'],["pass" => ["id"]]);
+        // $builder->connect('/delete/:id', ['controller' => 'Attributes', 'action' => 'delete'],["pass" => ["id"]]);
+        
+    });
+
+    $routes->scope('/admin/order' , function (RouteBuilder $builder) {
+        $builder->connect('/', 'orders::index');
+        // $builder->connect('/create', 'products::add');
+        $builder->connect('/edit/:id', ['controller' => 'Orders', 'action' => 'edit'],["pass" => ["id"]]);
+        // $builder->connect('/delete/:id', ['controller' => 'Attributes', 'action' => 'delete'],["pass" => ["id"]]);
         
     });
 

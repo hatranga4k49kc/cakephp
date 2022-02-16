@@ -40,6 +40,9 @@ class AttributesTable extends Table
         $this->setTable('attributes');
         $this->setDisplayField('name');
         $this->setPrimaryKey('id');
+
+        // $this->belongsToMany('AttributeProducts');
+
     }
 
     /**
