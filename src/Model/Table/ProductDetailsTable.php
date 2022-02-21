@@ -51,7 +51,7 @@ class ProductDetailsTable extends Table
         $this->hasMany('AttributeProducts', [
             'foreignKey' => 'product_detail_id',
         ]);
-        $this->belongsToMany('AttributeProducts',['joinTable'=>'attribute_products']);
+        // $this->belongsToMany('AttributeProducts',['joinTable'=>'attribute_products','foreignKey' => 'product_detail_id']);
     }
 
     /**
