@@ -52,11 +52,21 @@ return static function (RouteBuilder $routes) {
 
     Router::prefix('client', function (RouteBuilder $routes) {
         $routes->connect('/', ['controller' => 'Products', 'action' => 'index']);
+        $routes->connect('/register', ['controller' => 'Users', 'action' => 'register']);
+        $routes->connect('/login', ['controller' => 'Users', 'action' => 'login']);
+        $routes->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
+        $routes->connect('/cart', ['controller' => 'Users', 'action' => 'cart']);
+        $routes->connect('/get_cart', ['controller' => 'Users', 'action' => 'get_cart']);
+        $routes->connect('/update_pro_cart', ['controller' => 'Users', 'action' => 'update_product']);
+        $routes->connect('/forgot_password', ['controller' => 'Users', 'action' => 'send_mail']);
+        $routes->connect('/do_forgot_pass', ['controller' => 'Users', 'action' => 'forgot_pass']);
         $routes->connect('/get_product_by_id/:id', ['controller' => 'Products', 'action' => 'getProductByCategory'],["pass" => ["id"]]);
         $routes->connect('/product_detail/:id', ['controller' => 'Products', 'action' => 'getDetailProduct'],["pass" => ["id"]]);
         $routes->setExtensions(['json', 'xml']);
         $routes->fallbacks(DashedRoute::class);
     });
+
+
 
     // $routes->scope('client', function (RouteBuilder $routes) {
     //     $routes->connect('/', ['controller' => 'Products', 'action' => 'index']);

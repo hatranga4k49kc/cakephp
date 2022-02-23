@@ -81,14 +81,49 @@ return [
      *
      * See app.php for more configuration options.
      */
+    // 'EmailTransport' => [
+    //     'default' => [
+    //         'host' => 'localhost',
+    //         'port' => 25,
+    //         'username' => null,
+    //         'password' => null,
+    //         'client' => null,
+    //         'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null),
+    //     ],
+    // ],
+
+    // 'EmailTransport' => [
+    //     'default' => [
+    //         'host' => 'smtp.XXX.de',
+    //         'port' => 25,
+    //         'username' => null,
+    //         'password' => null,
+    //         'client' => null,
+    //         'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null),
+    //     ],
+    // ],
+
     'EmailTransport' => [
         'default' => [
-            'host' => 'localhost',
-            'port' => 25,
-            'username' => null,
-            'password' => null,
+            'className' => 'Smtp',
+            // The following keys are used in SMTP transports
+            'host' => 'smtp.mailtrap.io',
+            'port' => 2525,
+            'timeout' => 30,
+            'username' => '5bcaa1363aa3f6',
+            'password' => '4e59080c774f10',
             'client' => null,
+            'tls' => null,
             'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null),
         ],
+            'mail'=> [
+                    'host' => 'smtp.mailtrap.io',
+                    'port' => 2525,
+                    'username' =>'5bcaa1363aa3f6', //gmail id
+                    'password' =>'4e59080c774f10', //gmail password
+                    'tls' => true,
+                    'className' => 'Smtp'
+            ]
     ],
+
 ];
