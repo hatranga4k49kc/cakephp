@@ -34,7 +34,7 @@ $this->layout = 'adminmaster';
     </div>
     <div class="col-md-8">
         <div class="toolbar-btn-action">
-            <a class="btn btn-success" href="/admin/category/create" ><i class="fa fa-plus-circle"></i> Add new</a>
+            <a class="btn btn-success" href="/admin/product/create" ><i class="fa fa-plus-circle"></i> Add new</a>
             
         </div>
     </div>

@@ -168,12 +168,18 @@ class UsersController extends AppController
     public function get_cart()
     {
         $id_user = $this->Auth->user('id');
-        $data= $this->getTableLocator()->get('Orders')->find()->contain(['OrderDetails.ProductDetails.AttributeProducts.Attributes'])->where(['user_id'=>$id_user])->first();
+        $data= $this->getTableLocator()->get('Orders')->find()->contain(['OrderDetails.ProductDetails.AttributeProducts.Attributes'])->where(['user_id'=>$id_user,'status'=>0])->first();
         $product_id_arr = [];
-        foreach($data->order_details as $order_detail){
-            $product_id_arr[] = $order_detail->product_detail->product_id; 
+        $products = [];
+        if($data){
+            foreach($data->order_details as $order_detail){
+                $product_id_arr[] = $order_detail->product_detail->product_id; 
+            }
         }
         $products = $this->getTableLocator()->get('Products')->find()->where(['id IN'=>$product_id_arr])->all();
+        
+
+       
         // dd($product);
         $this->set(compact('id_user','data','products'));
     }

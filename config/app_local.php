@@ -126,4 +126,46 @@ return [
             ]
     ],
 
+    // 'EmailTransport' => [
+    //     'default' => [
+    //         'className' => 'Smtp',
+    //         // The following keys are used in SMTP transports
+    //         'host' => 'smtp.gmail.com',
+    //         'port' => 465,
+    //         // 'timeout' => 100,
+    //         'username' => 'smilehome.hachinet@gmail.com',
+    //         'password' => 'vcikuxzflyxsybzx',
+    //         'client' => null,
+    //         'tls' => null,
+    //         'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null),
+    //     ],
+    //         'mail'=> [
+    //                 'host' => 'smtp.gmail.com',
+    //                 'port' => 465,
+    //                 'username' =>'smilehome.hachinet@gmail.com', //gmail id
+    //                 'password' =>'vcikuxzflyxsybzx', //gmail password
+    //                 'tls' => true,
+    //                 'className' => 'Smtp'
+    //         ]
+    // ],
+
+    // 'EmailTransport' => [
+    //     'default' => [
+    
+    //         //This disables the actual sending of the mail
+    //         'className' =>"Debug", 
+    
+    //         'host' => 'smtp.office365.com',
+    //         'port' => 587,
+    //         'timeout' => 30,
+    //         'username' => 'username',
+    //         'password' => 'secret',
+    //         'client' => null,
+    //         'tls' => true,
+    //         'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null),
+    //     ],
+    // ],
+
+    
+
 ];

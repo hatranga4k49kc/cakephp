@@ -67,13 +67,7 @@ $this->layout = 'adminmaster';
         </td>
         <td><img src="/img/upload/<?= ($value->product_detail->image)?>"  style="max-height: 80px; max-width: 80px; margin-bottom: 10px;" ></td>
         <td><?= ($value->quantity)?></td>
-        <td>
-            <div class="btn-group btn-group-xs">
-                <a data-toggle="tooltip" title="Active User" class="btn btn-default" href=""><i class="fa fa-power-off"></i></a>
-                <a data-toggle="tooltip" title="Edit" class="btn btn-default" href=""><i class="fa fa-edit"></i></a>
-                <a data-toggle="tooltip" title="Delete" class="btn btn-default" href=""><i class="fa fa-trash-o"></i></a>
-            </div>
-        </td>
+        
     </tr>
     <?php endforeach ?>
 
