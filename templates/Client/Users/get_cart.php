@@ -3793,6 +3793,7 @@ $this->layout = 'null';
                                     <header class="jsx-1913948806 section-header">
                                         <h2 class="jsx-1913948806 title">Items in cart</h2>
                                     </header>
+                                    <?php if($data != null): ?>
                                     <div class="jsx-2008560202 content-wrapper">
                                         <div class="jsx-2008560202 content">
                                             <div class="jsx-794370035 cart-lines-container">
@@ -3946,6 +3947,7 @@ $this->layout = 'null';
                                             
                                         </div>
                                     </div>
+                                    <?php endif ?>
                                 </section>
                             </div>
                         </div>

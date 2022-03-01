@@ -2616,7 +2616,7 @@ $this->layout = 'null';
 						
 						
 					</ul>
-					<p class="more_btn"><span><img
+					<p class="more_btn" id="more_btn"><span><img
 								src="/client_html/img/shop/btn_more.png"
 								alt="view more"></span></p>
 					
@@ -2626,6 +2626,7 @@ $this->layout = 'null';
     $(document).ready(function() {
         let arr = [];
         let page = 1;
+		let max_page = `<?= ($number_product) ?>`
             $.ajax(`http://cakephp.local:81/client/products.json?page=${page}`, {
                 type: 'GET',  // http method
                 dataType: 'json', 
@@ -2633,7 +2634,7 @@ $this->layout = 'null';
                 success: function (data, status, xhr) {
                     page = page + 1
                     let html = ""
-                    // console.log(data)
+                    console.log(max_page)
                     arr = data.products;
                     // console.log(arr)
 
@@ -2659,23 +2660,20 @@ $this->layout = 'null';
                     $('.product_list').append(html);
 
                 },
-                    error: function (jqXhr, textStatus, errorMessage) {
-                            $('p').append('Error: ' + errorMessage);
-                        }
-
+                    
             });
         $('.more_btn').on('click',function(){
-            
-            $.ajax(`http://cakephp.local:81/client/products.json?page=${page}`, {
+
+			if(page <= max_page){
+				$.ajax(`http://cakephp.local:81/client/products.json?page=${page}`, {
                 type: 'GET',  // http method
                 dataType: 'json', 
                 data: { myData: 'This is my data.' },  // data to submit
                 success: function (data, status, xhr) {
-                    page = page + 1
+					page = page + 1
                     let html = ""
 					arr = data.products;
                     arr.forEach(obj => {
-                        console.log(obj.product_details[0].price)
                            html += `<li class="column">
                                         <a href="/client/product_detail/${obj.id}">
                                             <div class="image_container">
@@ -2694,12 +2692,17 @@ $this->layout = 'null';
                                      </li>`
                     });
                     $('.product_list').append(html);
+					if(page >  max_page){
+						console.log('hết rồiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii')
+						$('.more_btn').html(" ")
+					}
 
                 },
-                    error: function (jqXhr, textStatus, errorMessage) {
-                            $('p').append('Error: ' + errorMessage);
-                        }
+                    
             });
+			}
+            
+            
         });
     });
 </script>

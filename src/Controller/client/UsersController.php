@@ -169,6 +169,7 @@ class UsersController extends AppController
     {
         $id_user = $this->Auth->user('id');
         $data= $this->getTableLocator()->get('Orders')->find()->contain(['OrderDetails.ProductDetails.AttributeProducts.Attributes'])->where(['user_id'=>$id_user,'status'=>0])->first();
+
         $product_id_arr = [];
         $products = [];
         if($data){
@@ -178,7 +179,6 @@ class UsersController extends AppController
         }
         $products = $this->getTableLocator()->get('Products')->find()->where(['id IN'=>$product_id_arr])->all();
         
-
        
         // dd($product);
         $this->set(compact('id_user','data','products'));
