@@ -22,7 +22,7 @@ class UserSeeds extends AbstractSeed
     {
         $conn = ConnectionManager::get('default');
         $conn->execute("
-        INSERT INTO `users` VALUES ('1B84C045-6DEA-4D57-AA1B-6429A5268C38', 'Admin', 'admin@gmail.com','123456', 1, 0, NULL, '2022-01-24 08:15:48', '2022-02-07 04:30:40', '01', '001', '00013', '0354411826', NULL)
+        INSERT INTO `users` VALUES ('10', 'Admin 3', 'admin3@gmail.com', '$2y$10$1oFb4K64gzGEhihwEYc7UueinbT.iVDW8N68t06VZ4OwHKEYE3n0.', 1, 0, NULL, '2022-01-05 08:48:57', '2022-02-07 04:30:57', NULL, NULL, NULL, NULL, NULL);
             ");
     }
     

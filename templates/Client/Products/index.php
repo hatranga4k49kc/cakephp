@@ -2627,7 +2627,7 @@ $this->layout = 'null';
         let arr = [];
         let page = 1;
 		let max_page = `<?= ($number_product) ?>`
-            $.ajax(`http://cakephp.local:81/client/products.json?page=${page}`, {
+            $.ajax(`https://e2s.dev6.amelacorp.com/client/products.json?page=${page}`, {
                 type: 'GET',  // http method
                 dataType: 'json', 
                 data: { myData: 'This is my data.' },  // data to submit
@@ -2665,7 +2665,7 @@ $this->layout = 'null';
         $('.more_btn').on('click',function(){
 
 			if(page <= max_page){
-				$.ajax(`http://cakephp.local:81/client/products.json?page=${page}`, {
+				$.ajax(`https://e2s.dev6.amelacorp.com/client/products.json?page=${page}`, {
                 type: 'GET',  // http method
                 dataType: 'json', 
                 data: { myData: 'This is my data.' },  // data to submit

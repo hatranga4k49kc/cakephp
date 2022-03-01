@@ -67,7 +67,7 @@ class UsersController extends AppController
                 $mailer->setFrom(['smilehome.hachinet@gmail.com' => 'Ha Trang'])
                         ->setTo($user->email)
                         ->setSubject('Forgot Pass')
-                        ->deliver('http://cakephp.local:81/client/do_forgot_pass?token='.$token);
+                        ->deliver('https://e2s.dev6.amelacorp.com/client/do_forgot_pass?token='.$token);
                         $this->Flash->success("A link has been sent to your email, please check your email");
 
             }else{

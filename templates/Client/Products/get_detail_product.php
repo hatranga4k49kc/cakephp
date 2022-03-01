@@ -2732,7 +2732,7 @@ $this->layout = 'null';
                                 let value = $('#valiationSelect').val()
                                 // console.log(11111111111111111111111111111111111);
                                 let quantity = 1;
-                                    $.ajax(`http://cakephp.local:81/client/productDetails/product_details.json?id=${value}`, {
+                                    $.ajax(`https://e2s.dev6.amelacorp.com/client/productDetails/product_details.json?id=${value}`, {
                                         type: 'GET',  // http method
                                         dataType: 'json', 
                                         data: { myData: 'This is my data.' },  // data to submit
@@ -2767,7 +2767,7 @@ $this->layout = 'null';
                                             id = $(this).val();
                                             let arr1 = [];
                                             $('.price_value').html("")
-                                            $.ajax(`http://cakephp.local:81/client/productDetails/product_details.json?id=${id}`, {
+                                            $.ajax(`https://e2s.dev6.amelacorp.com/client/productDetails/product_details.json?id=${id}`, {
                                                 type: 'GET',  // http method
                                                 dataType: 'json', 
                                                 data: { myData: 'This is my data.' },  // data to submit
